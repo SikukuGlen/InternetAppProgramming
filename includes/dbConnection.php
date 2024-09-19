@@ -39,11 +39,36 @@ class dbConnection{
                     $this->connection = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
                     // set the PDO error mode to exception
                     $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                    echo "Connected successfully :-)";
+                    // echo "Connected successfully :-)";
                   } catch(PDOException $e) {
                     echo "Connection failed: " . $e->getMessage();
                   }
                 break;
+        }
+    }
+
+    public function insert($table, $data){
+        ksort($data);
+        $fielDetails = NULL;
+        $fieldNames = implode('`, `', array_keys($data));
+        $fieldValues = implode("', '", array_values($data));
+        $sth = "INSERT INTO $table (`$fieldNames`) VALUES ('$fieldValues')";
+        
+        switch($this->db_type){
+            case 'MySQLi' :
+                if($this->connection->query($sth) === TRUE){
+                    return TRUE;
+                }else{
+                    return "Error: " . $sth . "<br>" . $this->connection->error;
+                }
+                break;
+            case 'PDO' :
+                try{
+                    $this->connection->exec($sth);
+                    return TRUE;
+                  } catch(PDOException $e) {
+                    return $sth . "<br>" . $e->getMessage();
+                  }
         }
     }
 }
