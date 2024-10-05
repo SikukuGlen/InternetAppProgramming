@@ -1,6 +1,5 @@
 
 <?php
-// File: public/register.php
 
 include '../config/Database.php';
 
