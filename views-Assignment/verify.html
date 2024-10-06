@@ -9,11 +9,11 @@
 <body>
 <div class="container mt-5">
     <h2>Verify Your 2FA Code</h2>
-    <form method="POST" action="../public/verify.php">
+    <form method="POST" action="../public-Assignment/verify.php">
         <div class="form-group">
             <label for="2fa_code">Enter your 2FA code</label>
             <input type="text" class="form-control" name="2fa_code" required>
-            <input type="hidden" name="email" value="<?php echo $_GET['email']; ?>">
+            <input type="hidden" name="email" value=" <?php echo $_GET['email']; ?>">
         </div>
         <button type="submit" class="btn btn-primary">Verify</button>
     </form>
