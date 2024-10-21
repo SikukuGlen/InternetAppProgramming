@@ -23,8 +23,8 @@ function send2FACode($email, $code) {
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com'; // Your SMTP server
         $mail->SMTPAuth = true;
-        $mail->Username = 'johndoe@gmail.com'; //Gmail address
-        $mail->Password = 'password123@'; // Gmail password
+        $mail->Username   = 'gman40653@gmail.com';             
+        $mail->Password   = 'jzjngwnbpmcrrmqp';   
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
 
@@ -97,7 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Insert user into the database with a 10-minute verification expiry
         $stmt = $conn->prepare("
             INSERT INTO users (username, email, password, verification_code, verification_expiry, created_at, updated_at) 
-            VALUES (:username, :email, :password, :verification_code, DATE_ADD(NOW(), INTERVAL 10 MINUTE), NOW(), NOW())
+            VALUES (:username, :email, :password, :verification_code, DATE_ADD(NOW(), INTERVAL 1 HOUR), NOW(), NOW())
         ");
         $stmt->bindParam(':username', $username);
         $stmt->bindParam(':email', $email);
