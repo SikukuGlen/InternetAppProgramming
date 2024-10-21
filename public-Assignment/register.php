@@ -23,8 +23,8 @@ function send2FACode($email, $code) {
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com'; // Your SMTP server
         $mail->SMTPAuth = true;
-        $mail->Username   = 'gman40653@gmail.com';             
-        $mail->Password   = 'jzjngwnbpmcrrmqp';   
+        $mail->Username = $_ENV['SMTP_USERNAME'];  // Loaded from .env
+        $mail->Password = $_ENV['SMTP_PASSWORD'];  // Loaded from .env 
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
 
